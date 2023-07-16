@@ -13,13 +13,13 @@ public class BaseEntity extends AbstractBaseEntity {
     @Column(name = "id", nullable = false)
     protected Long id;
 
-    @Column(name = "createdDateTime", nullable = false)
+    @Column(name = "created_at", nullable = false)
     @CreationTimestamp
-    protected LocalDateTime createdDateTime;
+    protected LocalDateTime createdAt;
 
-    @Column(name = "updatedDateTime", nullable = false)
+    @Column(name = "updated_at", nullable = false)
     @UpdateTimestamp
-    protected LocalDateTime updatedDateTime;
+    protected LocalDateTime updatedAt;
 
     @Override
     public Long getId() {
@@ -28,11 +28,11 @@ public class BaseEntity extends AbstractBaseEntity {
 
     @Override
     public LocalDateTime getCreatedDateTime() {
-        return createdDateTime;
+        return createdAt;
     }
 
     @Override
     public LocalDateTime getUpdatedDateTime() {
-        return updatedDateTime;
+        return updatedAt;
     }
 }

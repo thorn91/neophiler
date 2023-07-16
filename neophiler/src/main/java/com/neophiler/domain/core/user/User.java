@@ -6,7 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "user")
+@Table(name = "user", schema = "public")
 public class User extends BaseEntity {
     @Column(name = "first_name", nullable = false)
     private String firstName;
@@ -20,4 +20,8 @@ public class User extends BaseEntity {
     private String password;
 
     protected User() {}
+
+    public String getFirstName() {
+        return firstName;
+    }
 }
