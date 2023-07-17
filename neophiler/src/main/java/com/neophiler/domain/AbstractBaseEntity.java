@@ -17,5 +17,4 @@ public abstract class AbstractBaseEntity {
         AbstractBaseEntity that = (AbstractBaseEntity) other;
         return getId().equals(that.getId());
     }
-
 }
