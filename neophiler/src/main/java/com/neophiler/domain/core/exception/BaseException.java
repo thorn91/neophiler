@@ -4,39 +4,39 @@ import java.util.Collection;
 import java.util.Collections;
 
 public class BaseException extends RuntimeException {
-    protected IBaseExceptionIdentifier baseExceptionType;
+    protected IBaseExceptionIdentifier baseExceptionIdentifier;
     protected Collection<String> additionalData = Collections.emptyList();
 
-    public BaseException(IBaseExceptionIdentifier baseExceptionType) {
-        this.baseExceptionType = baseExceptionType;
+    public BaseException(IBaseExceptionIdentifier baseExceptionIdentifier) {
+        this.baseExceptionIdentifier = baseExceptionIdentifier;
     }
 
     public BaseException(String message) {
         super(message);
     }
 
-    public BaseException(String message, IBaseExceptionIdentifier baseExceptionType) {
+    public BaseException(String message, IBaseExceptionIdentifier baseExceptionIdentifier) {
         super(message);
-        this.baseExceptionType = baseExceptionType;
+        this.baseExceptionIdentifier = baseExceptionIdentifier;
     }
 
-    public BaseException(String message, IBaseExceptionIdentifier baseExceptionType, Collection<String> additionalData) {
+    public BaseException(String message, IBaseExceptionIdentifier baseExceptionIdentifier, Collection<String> additionalData) {
         super(message);
-        this.baseExceptionType = baseExceptionType;
+        this.baseExceptionIdentifier = baseExceptionIdentifier;
         this.additionalData = additionalData;
     }
 
-    public IBaseExceptionIdentifier getBaseExceptionType() {
-        return baseExceptionType;
+    public IBaseExceptionIdentifier getBaseExceptionIdentifier() {
+        return baseExceptionIdentifier;
     }
 
     public String getDeveloperMessage() {
-        if (baseExceptionType == null) {
+        if (baseExceptionIdentifier == null) {
             return this.getClass().getSimpleName();
         }
 
-        var exceptionName = baseExceptionType.getClass().getSimpleName();
-        var exceptionInfo = baseExceptionType.toString().toLowerCase().replaceAll("_", " ");
+        var exceptionName = baseExceptionIdentifier.getClass().getSimpleName();
+        var exceptionInfo = baseExceptionIdentifier.toString().toLowerCase().replaceAll("_", " ");
         return exceptionName + " - " + exceptionInfo;
     }
 
