@@ -56,7 +56,7 @@ public class User extends BaseEntity {
 
     private void setPassword(String password) {
         if (password == null) {
-            throw new ValidationException("Missing password", UserException.PASSWORD_CANNOT_BE_EMPTY);
+            throw new ValidationException("Missing password", UserExceptionIdentifier.PASSWORD_CANNOT_BE_EMPTY);
         }
 
         this.password = User.passwordEncoder.encode(password);

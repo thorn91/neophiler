@@ -4,10 +4,10 @@ import java.util.Collection;
 import java.util.Collections;
 
 public class BaseException extends RuntimeException {
-    protected IBaseExceptionType baseExceptionType;
+    protected IBaseExceptionIdentifier baseExceptionType;
     protected Collection<String> additionalData = Collections.emptyList();
 
-    public BaseException(IBaseExceptionType baseExceptionType) {
+    public BaseException(IBaseExceptionIdentifier baseExceptionType) {
         this.baseExceptionType = baseExceptionType;
     }
 
@@ -15,18 +15,18 @@ public class BaseException extends RuntimeException {
         super(message);
     }
 
-    public BaseException(String message, IBaseExceptionType baseExceptionType) {
+    public BaseException(String message, IBaseExceptionIdentifier baseExceptionType) {
         super(message);
         this.baseExceptionType = baseExceptionType;
     }
 
-    public BaseException(String message, IBaseExceptionType baseExceptionType, Collection<String> additionalData) {
+    public BaseException(String message, IBaseExceptionIdentifier baseExceptionType, Collection<String> additionalData) {
         super(message);
         this.baseExceptionType = baseExceptionType;
         this.additionalData = additionalData;
     }
 
-    public IBaseExceptionType getBaseExceptionType() {
+    public IBaseExceptionIdentifier getBaseExceptionType() {
         return baseExceptionType;
     }
 
