@@ -3,11 +3,11 @@ package com.neophiler.api.controller.external.dto;
 import com.neophiler.domain.core.user.User;
 
 public class UserDTO {
-    private String firstName;
-    private String lastName;
-    private String userName;
-    private String email;
-    private String password;
+    public String firstName;
+    public String lastName;
+    public String userName;
+    public String email;
+    public String password;
 
     public UserDTO() {
     }

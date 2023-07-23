@@ -26,4 +26,8 @@ public class UserRepository {
     public User mustFindByEmail(String email) {
         return findByEmail(email).orElseThrow(() -> new NotFoundException(String.format("User not found with email %s", email), UserExceptionIdentifier.USER_NOT_FOUND));
     }
+
+    protected User save(User user) {
+        return internalUserRepository.save(user);
+    }
 }
