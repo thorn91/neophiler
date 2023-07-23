@@ -17,20 +17,4 @@ public class NeophilerApplication {
     public static void main(String[] args) {
         SpringApplication.run(NeophilerApplication.class, args);
     }
-
-    @GetMapping("/")
-    @Transactional
-    public String hello() {
-        var user = User.getBuilder()
-                .firstName("John")
-                .lastName("Doe")
-                .userName("jdoe")
-                .email("test@test.com")
-                .password("password")
-                .build();
-
-        internalUserRepository.save(user);
-
-        return "Hello World!";
-    }
 }
