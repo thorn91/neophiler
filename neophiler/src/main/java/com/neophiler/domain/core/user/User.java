@@ -1,15 +1,21 @@
 package com.neophiler.domain.core.user;
 
 import com.neophiler.domain.BaseEntity;
+import com.neophiler.domain.core.exception.NotAuthorizedException;
 import com.neophiler.domain.core.exception.ValidationException;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import java.util.Collection;
 
 @Entity
 @Table(name = "user", schema = "public")
-public class User extends BaseEntity {
+public class User extends BaseEntity implements UserDetails {
+    private static final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
     @Column(name = "first_name", nullable = false)
     private String firstName;
     @Column(name = "last_name", nullable = false)
@@ -21,9 +27,8 @@ public class User extends BaseEntity {
     @Column(name = "password", nullable = false)
     private String password;
 
-    private static final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-
-    protected User() {}
+    protected User() {
+    }
 
     public User(UserBuilder builder) {
         this.firstName = builder.firstName;
@@ -34,6 +39,10 @@ public class User extends BaseEntity {
         setPassword(builder.password);
     }
 
+    public static RequiredFirstName getBuilder() {
+        return new UserBuilder();
+    }
+
     public String getFirstName() {
         return firstName;
     }
@@ -42,16 +51,18 @@ public class User extends BaseEntity {
         return lastName;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
     public String getEmail() {
         return email;
     }
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
+    @Override
     public String getPassword() {
-        return password;
+        return this.password;
     }
 
     private void setPassword(String password) {
@@ -62,8 +73,35 @@ public class User extends BaseEntity {
         this.password = User.passwordEncoder.encode(password);
     }
 
-    public static RequiredFirstName getBuilder() {
-        return new UserBuilder();
+    public void validatePassword(String password) {
+        if (!User.passwordEncoder.matches(password, this.password)) {
+            throw new NotAuthorizedException("Invalid password", UserExceptionIdentifier.INVALID_PASSWORD);
+        }
+    }
+
+    @Override
+    public String getUsername() {
+        return userName;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return false;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return false;
     }
 
     public interface RequiredFirstName {

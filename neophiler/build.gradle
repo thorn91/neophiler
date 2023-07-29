@@ -22,33 +22,33 @@ repositories {
 }
 
 ext {
-    springVersion = '3.1.2';
-    springSecurityVersion = '6.1.2';
-    postgresVersion = '42.6.0';
-    jjwtVersion = '0.11.5';
-    liquibaseVersion = '4.23.0';
+    springVersion = '3.1.2'
+    springSecurityVersion = '6.1.2'
+    postgresVersion = '42.6.0'
+    jjwtVersion = '0.11.5'
+    liquibaseVersion = '4.23.0'
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc:$springVersion'
-    implementation 'org.springframework.boot:spring-boot-starter-data-rest:$springVersion'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:$springVersion'
-    implementation 'org.springframework.boot:spring-boot-starter-web:$springVersion'
-    implementation 'org.springframework.boot:spring-boot-starter-security:$springVersion'
-    implementation 'org.springframework.security:spring-security-crypto:$springSecurityVersion'
-    implementation 'org.liquibase:liquibase-core:$liquibaseVersion'
+    implementation "org.springframework.boot:spring-boot-starter-data-jdbc:${springVersion}"
+    implementation "org.springframework.boot:spring-boot-starter-data-rest:${springVersion}"
+    implementation "org.springframework.boot:spring-boot-starter-data-jpa:${springVersion}"
+    implementation "org.springframework.boot:spring-boot-starter-web:${springVersion}"
+    implementation "org.springframework.boot:spring-boot-starter-security:${springVersion}"
+    implementation "org.springframework.security:spring-security-crypto:${springSecurityVersion}"
+    implementation "org.liquibase:liquibase-core:${liquibaseVersion}"
 
-    implementation 'io.jsonwebtoken:jjwt-api:$jjwtVersion'
+    implementation "io.jsonwebtoken:jjwt-api:${jjwtVersion}"
 
-    developmentOnly 'org.springframework.boot:spring-boot-devtools:$springVersion'
+    developmentOnly "org.springframework.boot:spring-boot-devtools:${springVersion}"
 
-    runtimeOnly 'org.postgresql:postgresql:$postgresVersion'
-    runtimeOnly 'io.jsonwebtoken:jjwt-impl:$jjwtVersion'
-    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:$jjwtVersion'
-    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor:$springVersion'
+    runtimeOnly "org.postgresql:postgresql:${postgresVersion}"
+    runtimeOnly "io.jsonwebtoken:jjwt-impl:${jjwtVersion}"
+    runtimeOnly "io.jsonwebtoken:jjwt-jackson:${jjwtVersion}"
+    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor:${springVersion}"
 
-    testImplementation 'org.springframework.boot:spring-boot-starter-test:$springVersion'
-    testImplementation 'org.springframework.security:spring-security-test:$springSecurityVersion'
+    testImplementation "org.springframework.boot:spring-boot-starter-test:${springVersion}"
+    testImplementation "org.springframework.security:spring-security-test:${springSecurityVersion}"
 }
 
 tasks.named('test') {

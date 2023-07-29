@@ -18,3 +18,6 @@ create table if not exists "user"
 
 alter table "user"
     owner to postgres;
+
+insert into "user" (first_name, last_name, username, email, password)
+values ('test', 'test', 'test', 'test', 'test');

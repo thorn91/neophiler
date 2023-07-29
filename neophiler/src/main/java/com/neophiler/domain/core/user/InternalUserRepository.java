@@ -8,4 +8,6 @@ public interface InternalUserRepository extends CrudRepository<User, Long> {
     Optional<User> findByUserName(String userName);
 
     Optional<User> findByEmailIgnoreCase(String email);
+
+    Optional<User> findByUserNameIgnoreCaseOrEmailIgnoreCase(String userName, String email);
 }
