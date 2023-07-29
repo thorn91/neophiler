@@ -1,1 +1,0 @@
-SET TIMEZONE TO 'UTC';

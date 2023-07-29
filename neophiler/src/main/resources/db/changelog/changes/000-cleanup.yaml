@@ -1,0 +1,18 @@
+databaseChangeLog:
+  - changeSet:
+      id: 000-cleanup
+      author: tom
+      runInTransaction: false
+      changes:
+          - sql:
+                dbms: postgres
+                endDelimiter: ;
+                splitStatements: true
+                stripComments: true
+                sql: drop database if exists neophiler;
+          - sql:
+                dbms: postgres
+                endDelimiter: ;
+                splitStatements: true
+                stripComments: true
+                sql: create database neophiler with create database with owner postgres encoding 'UTF8' lc_collate 'en_US.UTF-8' lc_ctype 'en_US.UTF-8' tablespace pg_default connection limit -1;
